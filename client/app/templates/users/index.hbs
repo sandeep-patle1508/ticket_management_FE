@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-lg-10 col-md-10 col-sm-10">
+    <h2 class="page-title">Users</h2>
+  </div>
+  <div class="col-lg-2 col-md-2 col-sm-2 pull-right">
+    {{#link-to "users.new"}}
+      <button class="btn btn-primary btn-sm pull-right">Add User</button>
+    {{/link-to}}
+  </div>
+</div>
+
+<div class="row-fluid">
+<table class="table table-bordered table-responsive">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each model as |user|}}
+      {{#if user.role}}
+        <tr>
+          <td>
+            {{#link-to 'users.show' user.id}}
+              {{user.fullName}}
+            {{/link-to}}
+          </td>
+          <td>{{user.email}}</td>
+          <td class="text-center">{{capitalize user.role}}</td>
+          <td>
+            {{#link-to 'users.edit' user}}Edit{{/link-to}} /
+            <a href="#" {{action "delete" user}}>delete</a>
+          </td>
+        </tr>
+      {{/if}}
+    {{/each}}
+  </tbody>
+</table>
+</div>

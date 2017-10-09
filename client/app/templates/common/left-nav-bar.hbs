@@ -1,0 +1,21 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper">
+	<ul class="sidebar-nav">
+	  <li class="sidebar-brand">
+	      {{#link-to 'index' class="navbar-brand"}}
+	        Home
+	      {{/link-to}}
+	  </li>
+	  {{#if session.isAuthenticated}}
+		  <li>
+		    {{#link-to 'tickets'}}Tickets{{/link-to}}
+		  </li>
+			{{#if (eq sessionAccount.account.role 'admin')}}
+			  <li>
+			    {{#link-to 'users'}}Users{{/link-to}}
+			  </li>
+			{{/if}}
+		{{/if}}
+	</ul>
+</div>
+<!-- /#sidebar-wrapper -->

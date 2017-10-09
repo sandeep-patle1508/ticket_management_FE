@@ -1,0 +1,15 @@
+{{#unless (or isAdmin isAgent) }}
+  {{add-ticket}}
+{{/unless}}
+
+{{#if (or isAdmin isAgent)}}
+<div class="download-ticket">
+  <a href="#" {{action 'downloadPDF'}} class="btn btn-primary btn-sm pull-right">Download PDF</a>
+</div>
+{{/if}}
+
+<div class="page-header">
+  <h2>{{pageHeader}}</h2>
+</div>
+
+{{display-tickets tickets=model isAdmin=isAdmin isAgent=isAgent}}

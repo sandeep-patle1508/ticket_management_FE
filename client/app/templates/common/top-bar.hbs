@@ -1,0 +1,30 @@
+<div class="row header-row">
+  {{#if session.isAuthenticated}}
+    <div class="col-lg-3 col-md-3 col-sm-3">
+      <a href="#" {{action 'toggleMenu'}} class="btn btn-info" id="menu-toggle">Toggle Menu</a>
+    </div>
+  {{/if}}
+  <div class="col-lg-6 col-md-6 col-sm-6 header-title text-center {{unless session.isAuthenticated 'col-centered'}}">
+    <h4>
+    	{{#link-to 'index'}}
+	    	Customer Ticket Management Portal
+	    	{{#if (eq sessionAccount.account.role 'admin')}}
+		  		 - Admin Portal
+				{{/if}}
+
+				{{#if (eq sessionAccount.account.role 'agent')}}
+				   - Support Portal
+				{{/if}}
+
+				{{#if (eq sessionAccount.account.role 'customer')}}
+				   - Customer Portal
+				{{/if}}
+			{{/link-to}}
+    </h4>
+  </div>
+  {{#if session.isAuthenticated}}
+    <div class="col-lg-3 col-md-3 col-sm-3 pull-right text-right">
+      <h5>Hi {{sessionAccount.account.firstName}}, <a href="#" {{action 'logout'}}>Logout</a></h5>
+    </div>
+  {{/if}}
+</div>

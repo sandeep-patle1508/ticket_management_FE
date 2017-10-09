@@ -1,0 +1,20 @@
+<td>{{ticket.id}}</td>
+<td>
+  {{#link-to 'tickets.show' ticket.id}}
+    {{ticket.title}}
+  {{/link-to}}
+</td>
+<td>{{truncate ticket.description 50}}</td>
+<td>{{statusBadge ticket.status}}</td>
+
+{{#if (or isAdmin isAgent)}}
+  <td>{{ticket.reporter.fullName}}</td>
+{{/if}}
+<td>{{ticket.assignee.fullName}}</td>
+
+<td>
+  {{#link-to 'tickets.edit' ticket}}Edit{{/link-to}} {{sessionAccount.account.role}}
+  {{#unless isAgent}}
+    / <a href="#" {{action "delete" ticket}}>delete</a>
+  {{/unless}}
+</td>

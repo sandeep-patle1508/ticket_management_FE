@@ -1,0 +1,16 @@
+<div id="wrapper" class="toggled">
+  {{#if session.isAuthenticated}}
+    {{partial 'common/left-nav-bar'}}
+  {{/if}}
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+  		{{partial 'common/top-bar'}}
+      <div class="row">
+        {{outlet}}
+      </div>
+    </div>
+  </div>
+  <!-- /#page-content-wrapper -->
+</div>

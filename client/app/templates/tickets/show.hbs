@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h2>Ticket Details</h2>
+</div>
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{model.title}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row-fluid" style="margin-bottom:20px;">
+      {{#if isClosed }}
+        <button {{action "updateTicketStatus" model.id 'open'}} class="btn btn-danger btn-sm">Re-Open</button>
+      {{/if}}
+    </div>
+    <h5>Ticket ID : {{model.id}}</h5>
+    <h5>Resolution: {{statusBadge model.status}}</h5>
+    <h5>Reporter : {{model.reporter.fullName}}</h5>
+    <h5>Assignee : {{model.assignee.fullName}}</h5>
+    <h5>Assigned by : {{model.assignor.fullName}}</h5>
+    <hr>
+    <h5>Description:</h5>
+    <div>
+      {{html-safe model.description}}
+    </div>
+    <hr>
+    {{#unless ticketsController.isCustomer }}
+      {{#link-to 'tickets.edit' model class='btn btn-primary btn-sm'}}Edit{{/link-to}}
+    {{/unless}}
+
+    {{#link-to 'tickets' class='btn btn-primary btn-sm'}}Go Back{{/link-to}}
+  </div>
+
+</div>

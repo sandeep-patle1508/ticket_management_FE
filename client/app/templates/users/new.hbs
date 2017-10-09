@@ -1,0 +1,71 @@
+<div class="page-header">
+  <h2>Add User</h2>
+</div>
+<div class="panel panel-primary col-sm-12 col-md-8">
+
+  <div class="panel-body">
+    <div class="row-fluid">
+      <div class="col-sm-12">
+        <form class="form-horizontal" {{ action "save" on="submit"}}>
+          {{#if errorMessage}}
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <ul>
+              {{#each errorMessage as |err|}}
+              <li>{{err.title}}</li>
+              {{/each}}
+            </ul>
+          </div>
+
+          {{/if}}
+          <fieldset>
+            <div class="form-group">
+              <label for="title">First Name</label>
+              {{input value=model.firstName class="form-control"}}
+            </div>
+
+            <div class="form-group">
+              <label for="title">Last Name</label>
+              {{input value=model.lastName class="form-control"}}
+            </div>
+
+            <div class="form-group">
+              <label for="title">Email</label>
+              {{input type='email' value=model.email class="form-control"}}
+            </div>
+
+            <div class="form-group">
+              <label for="title">Phone Number</label>
+              {{input value=model.phone class="form-control"}}
+            </div>
+
+            <div class="form-group">
+              <label for="title">Password</label>
+              {{input type="password" value=model.password class="form-control"}}
+            </div>
+
+            <div class="form-group">
+              <label for="title">Password Confirmation</label>
+              {{input type="password" value=model.passwordConfirmation class="form-control"}}
+            </div>
+
+            <div class="form-group">
+              <label for="status">Role</label>
+              {{#x-select id="status" value=model.role class="form-control" as |xs|}}
+                {{#each userRoles as |role|}}
+                  {{#xs.option value=role.role}}{{capitalize role.role}}{{/xs.option}}
+                {{/each}}
+              {{/x-select}}
+            </div>
+
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              {{#link-to 'users' class='btn btn-primary'}}Go Back{{/link-to}}
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
